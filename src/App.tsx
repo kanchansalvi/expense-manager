@@ -2,7 +2,8 @@ import React from 'react';
 //import logo from './logo.svg';
 import './App.css';
 // import { render } from '@testing-library/react';
-
+import { Button } from '@material-ui/core';
+import AddExpense from './addExpense';
 
 // const categoryList: string[]=["Home",
 // "Baby", 
@@ -40,22 +41,12 @@ export class BtnClick extends React.Component<{}>{
 
 function AddExpenseBtn() {
   return (
-    <div> <button onClick={() => {}}> Add Expense </button> </div>
+    <div> <button onClick={() => {AddExpense()}}> Add Expense </button> </div>
   );
 }
 
-function ExpenseDialog(){
-  return(
-<dialog open= {true}> 
-    <h5>Enter the expenses to add </h5>
-      <div> Item name : <input></input>  </div>
-       <div> Amount : <input></input> </div>
-       <div> Category : <input></input> </div>
-       <div> Date :  <input></input> </div>
-        <div><button> Save </button> </div>
-    </dialog>
-  );
-}
+
+
 function AppName(){
   return(
     <div><h1>EXPENSE MANAGER</h1></div>
@@ -65,13 +56,13 @@ function App() {
   return (
     <div className="App">
       <AppName/>
-      
+     <Button color="primary">Hello World</Button>
+     <AddExpense/>
     <AddExpenseBtn/>
     <BtnClick/>
-    <ExpenseDialog/>
 
       <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" />
+        {/* <img src={logo} className="App-logo" alt="logo"q111              />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>

@@ -16,3 +16,7 @@ dialog{
   width: 400;
   background-color: aquamarine;
 }
+
+input{
+  margin: 5px;  
+}
