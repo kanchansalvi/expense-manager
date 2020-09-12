@@ -2,8 +2,8 @@ import React from 'react';
 //import logo from './logo.svg';
 import './App.css';
 // import { render } from '@testing-library/react';
-import { Button } from '@material-ui/core';
-import AddExpense from './addExpense';
+//import AddExpense from './addExpense';
+import SimpleDialogDemo from './addExpense';
 
 // const categoryList: string[]=["Home",
 // "Baby", 
@@ -18,35 +18,6 @@ import AddExpense from './addExpense';
 
 
 
-export class BtnClick extends React.Component<{}>{
-  
-    state = { LoggedIn : false};
-
-    toggle() {
-      let currVal = this.state.LoggedIn;
-      this.setState({LoggedIn: !currVal});
-    }
-  
-    render() {
-     return <div> 
-       <button onClick={() => {this.toggle()}}>{this.state.LoggedIn? "LOG OUT" : "LOGIN"}</button>
-       <div>
-         User is {this.state.LoggedIn? "logged in" : "not logged in"}
-       </div>
-        </div>;
-    }
-}
-
-
-
-function AddExpenseBtn() {
-  return (
-    <div> <button onClick={() => {AddExpense()}}> Add Expense </button> </div>
-  );
-}
-
-
-
 function AppName(){
   return(
     <div><h1>EXPENSE MANAGER</h1></div>
@@ -56,10 +27,8 @@ function App() {
   return (
     <div className="App">
       <AppName/>
-     <Button color="primary">Hello World</Button>
-     <AddExpense/>
-    <AddExpenseBtn/>
-    <BtnClick/>
+     <div><h1>Welcome to Expense Manager</h1></div>
+    <SimpleDialogDemo/>
 
       <header className="App-header">
         {/* <img src={logo} className="App-logo" alt="logo"q111              />
