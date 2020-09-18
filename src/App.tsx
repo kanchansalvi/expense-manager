@@ -5,6 +5,8 @@ import './App.css';
 //import AddExpense from './addExpense';
 import SimpleDialogDemo from './addExpense';
 
+import {Expense} from './models/Expense';
+
 // const categoryList: string[]=["Home",
 // "Baby", 
 // "Food", 
@@ -23,6 +25,8 @@ function AppName(){
     <div><h1>EXPENSE MANAGER</h1></div>
   );
 }
+
+let ex: Expense;
 function App() {
   return (
     <div className="App">
