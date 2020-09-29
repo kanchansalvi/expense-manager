@@ -7,46 +7,26 @@ import SimpleDialogDemo from './addExpense';
 
 import {Expense} from './models/Expense';
 
-// const categoryList: string[]=["Home",
-// "Baby", 
-// "Food", 
-// "Grocery"];
-
-// const abc = (categoryList: boolean, {}) => {
-//   return <div>
-//     {categoryList? <h1/>: <h1/>}
-//   </div>
-// }
-
-
-
 function AppName(){
   return(
     <div><h1>EXPENSE MANAGER</h1></div>
   );
 }
 
-let ex: Expense;
+let ex: Expense = {
+  desc: "Ganesh",
+  amount: 100,
+  category: "Grocery",
+  date: "",
+};
+
 function App() {
   return (
     <div className="App">
       <AppName/>
      <div><h1>Welcome to Expense Manager</h1></div>
-    <SimpleDialogDemo/>
-
+    <SimpleDialogDemo {...ex}/>
       <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo"q111              />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a> */}
       </header>
     </div>
   );

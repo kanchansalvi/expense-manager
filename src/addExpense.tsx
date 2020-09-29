@@ -16,7 +16,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { MenuItem } from '@material-ui/core';
 
 
-const currencies = [
+const category = [
   {
     value: 'Grocery',
     label: 'Grocery',
@@ -34,22 +34,46 @@ const currencies = [
     label: 'Other',
   },
 ];
-class FormDialog extends React.Component<{}, {num1:string, num2:string, currency: string}>{
-// class FormDialog extends React.Component<{}, Expense>{
 
+//interface Expense {}
+interface EState{
+  desc: string;
+  amount: number;
+  category: string;
+  date: string;
+}
+
+// let ex: Expense = {
+//   desc: "";
+// };
+
+//class FormDialog extends React.Component<{}, {num1:string, num2:string, currency: string}>{
+//  class FormDialog extends React.Component<{}, Expense>{
+ class FormDialog extends React.Component<Expense/*props*/, Expense/*state*/>{
+
+
+  // class FormDialog extends React.Component<Expense, EState>{
   constructor(props: any){
     super(props);
     this.state = {
-      num1: 'ItemName',
-      num2:'Amount',
-      currency: 'Grocery'
-      
-    }
-    
-    // this.msg = 'hello';
+      desc: this.props.desc,
+      amount: this.props.amount,
+      category: this.props.category,
+      date: this.props.date
+    };
   
-  // this.handleChange = this.handleClickOpen.bind(this);
-  // this.handleChange = this.handleClose.bind(this);
+  
+
+  // constructor(props: any){
+  //   super(props);
+  //   this.state = {
+  //     num1: 'ItemName',
+  //     num2:'Amount',
+  //     currency: 'Grocery'
+      
+  //   }
+    
+    
   this.handleNum1 = this.handleNum1.bind(this);
   this.handleNum2 = this.handleNum2.bind(this);
   this.handleCategory = this.handleCategory.bind(this);
@@ -68,23 +92,24 @@ handleAdd(event: any){
   //console.log(this.state.num1 + " num2="+this.state.num2+" curr="+ this.state.currency);
  
   console.log("State is " + JSON.stringify(this.state));
+  console.log(this.props.desc);
 }
 
 handleNum1(event: any){
-  this.setState({num1: event.target.value});
+  this.setState({desc: event.target.value});
   //console.log("State is " + this.state.num1 + " and " + this.state.num2);
   // this.msg = "Hello World" ;
-  console.log(this.state.num1);
+  console.log(this.state.desc);
 }
 handleNum2(event: any){
-  this.setState({num2: event.target.value});
+  this.setState({amount: event.target.value});
   //console.log("State is " + this.state.num1 + " and " + this.state.num2);
-  console.log(this.state.num2);
+  console.log(this.state.amount);
 }
 handleCategory(event: any){
-  this.setState({currency: event.target.value});
+  this.setState({category: event.target.value});
   //console.log("State is " + this.state.num1 + " and " + this.state.num2);
-  console.log(this.state.currency);
+  console.log(this.state.category);
 }
 
 render(){
@@ -100,22 +125,22 @@ render(){
              <DialogContentText>
               
                  <TextField
-                    value={this.state.num1}
+                    value={this.state.desc}
                     onChange={this.handleNum1}/> <br/>
                   
                   <TextField
-                    value={this.state.num2}
+                    value={this.state.amount}
                     onChange={this.handleNum2}/> <br/>
           
                 <TextField
                   id="standard-select-currency"
                   select
                   label="Select"
-                   value={this.state.currency}
+                   value={this.state.category}
                   onChange={this.handleCategory}
                   helperText="Please select your currency"
                 >
-                  {currencies.map((option) => (
+                  {category.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
                       {option.label}
                     </MenuItem>
