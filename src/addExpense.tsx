@@ -6,6 +6,8 @@ import './App.css';
 import {Expense} from './models/Expense';
 
 import React from 'react';
+
+
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -36,11 +38,8 @@ const category = [
 ];
 
 //interface Expense {}
-interface EState{
-  desc: string;
-  amount: number;
-  category: string;
-  date: string;
+interface EState extends Expense{
+  dialogState : boolean
 }
 
 // let ex: Expense = {
@@ -49,9 +48,8 @@ interface EState{
 
 //class FormDialog extends React.Component<{}, {num1:string, num2:string, currency: string}>{
 //  class FormDialog extends React.Component<{}, Expense>{
- class FormDialog extends React.Component<Expense/*props*/, Expense/*state*/>{
-
-
+ class FormDialog extends React.Component<Expense/*props*/, EState/*state*/>{
+ 
   // class FormDialog extends React.Component<Expense, EState>{
   constructor(props: any){
     super(props);
@@ -59,28 +57,42 @@ interface EState{
       desc: this.props.desc,
       amount: this.props.amount,
       category: this.props.category,
-      date: this.props.date
-    };
-  
-  
-
-  // constructor(props: any){
-  //   super(props);
-  //   this.state = {
-  //     num1: 'ItemName',
-  //     num2:'Amount',
-  //     currency: 'Grocery'
+      date: this.props.date,
+      dialogState: false
       
-  //   }
+    };
     
-    
+ 
   this.handleNum1 = this.handleNum1.bind(this);
   this.handleNum2 = this.handleNum2.bind(this);
   this.handleCategory = this.handleCategory.bind(this);
   this.handleDialogSubmit = this.handleDialogSubmit.bind(this);
   this.handleAdd = this.handleAdd.bind(this);
+  this.handleClickOpen = this.handleClickOpen.bind(this);
+  this.handleClickCancel = this.handleClickCancel.bind(this);
+  this.renderTableData = this.renderTableData.bind(this);
 }
 
+renderTableData() {
+  // return this.state.Expense.map((expenses, index) => {
+  //    const { desc, amount, category, date } = expenses //destructuring
+     return (
+      <div>
+       <h1 id='title'>Expenses Dynamic Table</h1>
+          <table id='expenses'>
+            <tbody>
+              <tr key={this.state.desc}>
+                <td>{this.state.desc}</td>
+                <td>{this.state.amount}</td>
+                <td>{this.state.category}</td>
+                <td>{this.state.date}</td>
+              </tr>
+            </tbody>
+            </table>
+        </div>
+     )
+  // })
+}
 
 handleDialogSubmit(event: any){
   console.log("State is " + this.state);
@@ -88,11 +100,11 @@ handleDialogSubmit(event: any){
 }
 
 handleAdd(event: any){
-  //this.setState({num1: event.target.value, num2: event.target.value, currency: event.target.value});
-  //console.log(this.state.num1 + " num2="+this.state.num2+" curr="+ this.state.currency);
- 
+  
   console.log("State is " + JSON.stringify(this.state));
   console.log(this.props.desc);
+
+  this.renderTableData();
 }
 
 handleNum1(event: any){
@@ -112,14 +124,28 @@ handleCategory(event: any){
   console.log(this.state.category);
 }
 
+ handleClickOpen(){
+  this.setState({
+   dialogState: true
+  });
+}
+
+handleClickCancel(){
+  this.setState({
+   dialogState: false
+  });
+  this.renderTableData();
+}
+
 render(){
 
   return (
     <div>
-      <Button variant="outlined" color="primary"  >
+      <Button variant="outlined" color="primary" onClick={this.handleClickOpen} >
         Add Expenses
       </Button>
-      <Dialog open={true} onClose={this.handleDialogSubmit} aria-labelledby="form-dialog-title">
+
+      <Dialog open={this.state.dialogState} onClose={this.handleDialogSubmit} aria-labelledby="form-dialog-title">
       <DialogTitle id="form-dialog-title">Add your expenses</DialogTitle>
           <DialogContent>
              <DialogContentText>
@@ -160,10 +186,10 @@ render(){
              </DialogContentText>
            </DialogContent>
         <DialogActions>
-          <Button color="primary" onClick={this.handleAdd}>
+          <Button color="primary" onClick={this.handleClickCancel}>
             ADD
           </Button>
-          <Button color="primary">
+          <Button color="primary" onClick = {this.handleClickCancel}>
             CANCEL
           </Button>
         </DialogActions>

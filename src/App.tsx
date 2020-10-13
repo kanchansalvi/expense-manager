@@ -4,6 +4,7 @@ import './App.css';
 // import { render } from '@testing-library/react';
 //import AddExpense from './addExpense';
 import SimpleDialogDemo from './addExpense';
+import ViewExpense from './ViewExpense';
 
 import {Expense} from './models/Expense';
 
@@ -26,6 +27,8 @@ function App() {
       <AppName/>
      <div><h1>Welcome to Expense Manager</h1></div>
     <SimpleDialogDemo {...ex}/>
+    {/* <ViewExpense{...ex}/> */}
+    <ViewExpense/>
       <header className="App-header">
       </header>
     </div>
